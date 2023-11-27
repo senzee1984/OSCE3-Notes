@@ -10,11 +10,11 @@ Compared to learning notes, it is more like a checklist or cheat sheet. It canno
 
 Could contain some dated tips and tricks.
 
-Not a comprehensive pentesting or red teaming checklist, it is only for OSEP preparation.
+Not a comprehensive pentesting or red teaming checklist, it is only for OSEP exam preparation.
 
 ## OSWE
 Currently working on this.
 
 
 ## OSED
-For DEP bypass portion, please check **OSED_DEP_Bypass_WPM/md** and **OSED_DEP_Bypass_VA**
+For DEP bypass portion, please check **OSED_DEP_Bypass_WPM/md**, **OSED_DEP_Bypass_VA**, and **OSED_Gadget_Regex.md**.
