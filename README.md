@@ -17,4 +17,4 @@ Currently working on this.
 
 
 ## OSED
-For DEP bypass portion, please check **OSED_DEP_Bypass_WPM/md**, **OSED_DEP_Bypass_VA**, and **OSED_Gadget_Regex.md**.
+For DEP bypass portion, please check **OSED_DEP_Bypass_WPM.md**, **OSED_DEP_Bypass_VA.md**, and **OSED_Gadget_Regex.md**.
