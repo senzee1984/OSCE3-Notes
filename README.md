@@ -6,7 +6,7 @@ Completed **OSEP** and **OSWE**
 ## OSEP
 Please check **OSEP.md**.   
 
-Compared to learning notes, it is more like a checklist or cheatsheet. It cannot replace PDF.
+Compared to learning notes, it is more like a checklist or cheat sheet. It cannot replace PDF.
 
 Could contain some dated tips and tricks.
 
@@ -17,4 +17,4 @@ Currently working on this.
 
 
 ## OSED
-Have not completed OSED course.
+For DEP bypass portion, please check **OSED_DEP_Bypass_WPM/md** and **OSED_DEP_Bypass_VA**
